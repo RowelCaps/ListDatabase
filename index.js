@@ -1,11 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-mongoose.connect(process.env.MONGO_CONNECT_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+dotenv.config();
+mongoose.connect(process.env.MONGO_URI);
 
 const app = express();
 const port = 3000;

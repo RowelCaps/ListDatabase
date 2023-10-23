@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb+srv://admin-rowel:dGCQJrgDEOVPRe3u@cluster0.jrt2jak.mongodb.net/todolistdb", {
+mongoose.connect(process.env.MONGO_CONNECT_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -81,7 +81,7 @@ app.post("/submit", (req,res) => {
     }
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log(`Listening to port ${port}`);
 })
 

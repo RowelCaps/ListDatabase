@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 dotenv.config();
-mongoose.connect(process.env.MONGO_URI);
 
 const app = express();
 const port = 3000;
@@ -26,6 +25,18 @@ var todayTask = [];
 var workTask = [];
 
 var todayTaskListen = true;
+
+mongoose.set('strictQuery', false);
+const connectDB = async() => {
+    try{
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log(`Mongo DB Connected: ${conn.connection.host}`);
+    }
+    catch(error){
+        console.log(error);
+        process.exit(1);
+    }
+}
 
 app.use(express.static("public"));
 
@@ -80,8 +91,10 @@ app.post("/submit", (req,res) => {
     }
 });
 
-app.listen(process.env.PORT || port, () => {
-    console.log(`Listening to port ${port}`);
+connectDB().then(() =>{
+    app.listen(process.env.PORT || port, () => {
+        console.log(`Listening to port ${port}`);
+    })
 })
 
 function generateDayInfo()

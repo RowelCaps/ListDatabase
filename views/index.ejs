@@ -1,0 +1,29 @@
+<%- include("partials/header.ejs") %>
+<main>
+    <% if(locals.dayOfTheWeek && locals.month  && locals.dayMonth) { %>
+        <div class="box">
+            <h1><%= locals.dayOfTheWeek %>, <%= locals.month %> <%= locals.dayMonth %></h1>
+        </div>
+    <% } %>
+    <div class = "container col-xl-3 col-lg-5 col-md-6 col-sm-9 col-12">
+        <ul class = "list-group ">
+            <% if(locals.tasks && locals.tasks.length > 0){ %>
+                <% for(var i = 0; i < locals.tasks.length; i++) { %>
+                    <li class = "list-group-item d-flex justify-content-start gap-3 p"> 
+                        <input type = "checkbox" class = "col-1">
+                        <p class = "mb-0"> <%= locals.tasks[i].name %> </p>
+                    </li>
+                <% } %>
+            <%  } %>
+
+            <li class = "list-group-item d-flex justify-content-center "> 
+                <form action="/submit" method = "post"> 
+                    <input type = "text" name = "task" placeholder="Add Task" class = "col-8">
+                    <button type = "submit" class = "btn btn-primary rounded-circle"> + </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</main>
+
+<%- include("partials/footer.ejs") %>

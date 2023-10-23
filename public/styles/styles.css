@@ -1,0 +1,25 @@
+main{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box{
+    background-color: #712cf9;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    padding: 5vh;
+    border-radius: 10px;
+    box-shadow: 10px 4px 15px rgba(0,0,0,0.4);
+}
+
+h1 {
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    color:white;
+}
